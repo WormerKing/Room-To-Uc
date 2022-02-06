@@ -1,23 +1,33 @@
 <%= stylesheet_link_tag "new_user"%>
-<section class="vh-100 gradient-custom">
+<% content_for :title do%>
+  Kayıt ol
+<%end%>
+<script>
+  function kaydır() {
+    window.scrollTo(0,document.body.scrollHeight);
+  }
+</script>
+<section class="vh-120 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <%= form_for @user do |form|%>
-
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Kayıt Formu</h3>
+            <%= form_for(@user,class:"needs-validation") do |form|%>
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <%= form.text_field :first_name,id:"firstName",class:"form-control form-control-lg",placeholder:"First Name"%>
+                    <%= form.text_field :first_name,id:"firstName",class:"form-control form-control-lg",required:"",placeholder:"Ad"%>
+                    <div class="invalid-feedback">
+                      Burasının doldurulması gerekiyor
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
 
                   <div class="form-outline">
-                    <%= form.text_field :last_name,id:"lastName",class:"form-control form-control-lg",placeholder:"Last Name"%>
+                    <%= form.text_field :last_name,id:"lastName",class:"form-control form-control-lg",required:"",placeholder:"Soyad"%>
                   </div>
 
                 </div>
@@ -27,7 +37,7 @@
                 <div class="col-md-6 mb-4 d-flex align-items-center">
 
                   <div class="form-outline datepicker w-100">
-                  	<%= form.text_field :username,id:"username",class:"form-control form-control-lg",placeholder:"Username"%>
+                  	<%= form.text_field :username,id:"username",class:"form-control form-control-lg",required:"",placeholder:"Kullanıcı adı"%>
                   </div>
 
                 </div>
@@ -37,12 +47,12 @@
 
                   <div class="form-check form-check-inline">
                     <%= form.radio_button :role,"janitor",class:"form-check-input",id:"janitor_role"%>
-                    <%= form.label "Janitor"%>
+                    <%= form.label "Oda kurucu"%>
                   </div>
 
                   <div class="form-check form-check-inline">
                     <%= form.radio_button :role,"player",class:"form-check-input",id:"player_role"%>
-                    <%= form.label "Player"%>
+                    <%= form.label "Oyuncu"%>
                   </div>
 
                 </div>
@@ -52,14 +62,14 @@
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <%= form.email_field :email,class:"form-control form-control-lg",placeholder:"Email"%>
+                    <%= form.email_field :email,class:"form-control form-control-lg",placeholder:"Email",required:""%>
                   </div>
 
                 </div>
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <%= form.number_field :pubg_id,class:"form-control form-control-lg",placeholder:"Pubg id"%>
+                    <%= form.number_field :pubg_id,class:"form-control form-control-lg",placeholder:"Pubg id",required:""%>
                   </div>
 
                 </div>
@@ -67,18 +77,29 @@
               <div class="row">
               	<div class="col-md-6 mb-4 pb-2">
               		<div class="forum-outline">
-              			<%= form.password_field :password,class:"form-control form-control-lg",placeholder:"Password"%>
+              			<%= form.password_field :password,class:"form-control form-control-lg",placeholder:"Şifre",required:""%>
               		</div>
               	</div>
               	<div class="col-md-6 mb-4 pb-2">
               		<div class="forum-outline">
-              			<%= form.password_field :password_confirmation,class:"form-control form-control-lg",placeholder:"Password confirmation"%>
+              			<%= form.password_field :password_confirmation,class:"form-control form-control-lg",placeholder:"Şifre(Yeniden)",required:""%>
               		</div>
               	</div>
+              </div>
+              <div class="col-md-12 mb-2 pb-1">
+                <label class="form-label-lg">Kaydol butonuna basarak <%= link_to "Kullanıcı Sözleşmemizi","#"%> Kabul etmiş olursunuz.</label>
+              </div>
+              <div class="mt-1 pt-4 submit_button">
+                <!--input class="btn btn-primary btn-lg" type="submit" value="Submit" -->
+                <%= form.submit "Kaydol",class:"btn btn-primary btn-lg right"%>
               </div>
               <div class="mt-4 pt-2">
-                <!--input class="btn btn-primary btn-lg" type="submit" value="Submit" -->
-                <%= form.submit "Kaydol",class:"btn btn-primary btn-lg"%>
+                <div class="row">
+                  <hr class="col-sm-5"/><span class="col-sm-2">Ya da</span><hr class="col-sm-5"/>
+                </div>
+              </div>
+              <div class="mt-1 pt-2">
+                <span class="span_itele">Zaten bir hesabınız var mı? <%= link_to "Giriş yapın. ","#"%></span>
               </div>
             <%end%>
           </div>
@@ -86,4 +107,14 @@
       </div>
     </div>
   </div>
+  <% if @user.errors.any?%>
+    <div class="error-messages bg-danger">
+      <ul>
+        <% @user.errors.full_messages.each do |error|%>
+          <li><%= error%></li>
+        <%end%>
+      </ul>
+    </div>
+  <%end%>
 </section>
+<%= scroll_method if @user.errors.any?%>

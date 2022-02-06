@@ -25,6 +25,8 @@ gem 'jquery-rails', '~> 4.4'
 
 gem 'email_validator', '~> 2.2', '>= 2.2.3'
 
+# gem 'formvalidation-rails', '~> 0.8.1'
+
 # gem 'redis', '~> 4.0'
 
 # Use Active Storage variant
@@ -34,6 +36,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'guard-livereload', '~> 2.5', require: false
 end
 
 group :development do
@@ -41,6 +44,9 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem 'guard'
+  gem 'guard-zeus'
+  gem 'rack-livereload'
 end
 
 group :test do

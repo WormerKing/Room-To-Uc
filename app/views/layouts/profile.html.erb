@@ -1,0 +1,36 @@
+<% content_for(:content) do%>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10" style="padding-top:10px;">
+      		<%= image_tag "https://www.gravatar.com/avatar/akdlakdasdansda4c1naodasosn?s=60",style:"border-radius:50%;",alt:"profile-photo"%>
+      		<h4 style="display:inline;"><%= @user.username%></h4>
+      		<h5 class="float-end" style="display:inline;margin-top:10px;"><%= "#{@user.first_name} #{@user.last_name}"%></h5>
+      		<% if @user == current_user%>
+	      		<div class="row" style="margin-top:10px;">
+	      			<div class="col-md-6">
+	      				<%= link_to "Girdiğim odalar","#",class:"btn btn-secondary"%>
+	      				<%= link_to "Kazandığım ödüller","#",class:"btn btn-warning"%>
+	      				<%= link_to "Geçmişim","#",class:"btn btn-secondary"%>
+	      			</div>
+	      			<div class="col-md-6">
+	      				<%= link_to "Hesap durumu","#",class:"btn btn-secondary float-end",style:"margin-left:4px;"%>
+	      				<%= link_to "Cezalarım","#",class:"btn btn-danger float-end"%>
+	      			</div>
+	      		</div>
+	      	<%end%>
+      		<hr style="border:1px solid black"/>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<h1>Bilgiler</h1>
+			<p>Pubg id:<%= @user.pubg_id%></p>
+			<%#yield(:profile_content)%>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+<%end%>
+
+<%= render template:"layouts/application"%>

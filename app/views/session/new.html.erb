@@ -1,0 +1,10 @@
+<%= form_for :session,url: session_path do |oturum|%>
+	<div class="form-outline form-white mb-4">
+        <%= oturum.text_field :user_name,placeholder:"Kullanıcı adı",class:"form-control form-control-lg"%>
+	</div>
+
+	<div class="form-outline form-white mb-4">
+	    <%= oturum.password_field :password,class:"form-control form-control-lg",placeholder:"Şifre"%>
+	</div>
+	<%= oturum.submit "Giriş yap",class:"btn btn-outline-light btn-lg px-5"%>
+<%end%>
