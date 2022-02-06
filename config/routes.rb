@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get "/users",to:redirect("/kaydol")
 
   resources :users,only: %i[ create update destroy ]
-  #get "/users/new",to:redirect("/kaydol")
   get "/:id",to:"users#show",as: :profile
-  get "/:id/düzenle",to:"users#edit",as: :edit_path
+  get "/:id/düzenle",to:"users#edit",as: :edit_user
 end

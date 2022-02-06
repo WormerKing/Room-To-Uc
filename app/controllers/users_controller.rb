@@ -20,6 +20,9 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		if @user.username == current_user.username
+			@data = params[:sayfa] if ["girdiğim-odalar","geçmiş","ödüllerim","cezalarım","hesap-durumum"].include? params[:sayfa]
+		end
 		render layout:"profile"
 	end
 
