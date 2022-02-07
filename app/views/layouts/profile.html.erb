@@ -3,7 +3,7 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-10" style="padding-top:10px;">
       		<%= image_tag "https://www.gravatar.com/avatar/akdlakdasdansda4c1naodasosn?s=60",style:"border-radius:50%;",alt:"profile-photo"%>
-      		<h4 style="display:inline;"><%= @user.username%></h4>
+      		<h4 style="display:inline;"><%= @user.username%></h4><%= link_to "Düzenle",edit_profile_path,class:"btn btn-secondary",style:"margin-left:10px;" if current_user == @user%>
       		<h5 class="float-end" style="display:inline;margin-top:10px;"><%= "#{@user.first_name} #{@user.last_name}"%></h5>
       		<% if @user == current_user%>
 	      		<div class="row" style="margin-top:10px;">
@@ -25,8 +25,6 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<h1>Bilgiler</h1>
-			<p>Pubg id:<%= @user.pubg_id%></p>
 			<%= yield(:profile_content)%>
 		</div>
 		<div class="col-md-1"></div>

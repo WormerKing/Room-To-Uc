@@ -12,7 +12,7 @@
         		<%= link_to "Hesabım",profile_path(current_user),class:"nav-link active"%>
         	</li>
         	<li class="nav-item">
-          		<%= link_to "Çıkış yap",logout_path(current_user),method: :delete,class:"nav-link active text-danger",data:{confirm:"Emin misiniz ? Tekrar giriş yapmanız gerekecek"}%>
+          		<%= link_to "Çıkış yap",logout_path,method: :delete,class:"nav-link active text-danger",data:{confirm:"Emin misiniz ? Tekrar giriş yapmanız gerekecek"}%>
         	</li>
         <%else%>
         	<li class="nav-item">
@@ -24,9 +24,10 @@
         <%end%>
       </ul>
       <% if signed_in?%>
-      	<a class="navbar-brand" href="#">
-      		<%= image_tag "https://www.gravatar.com/avatar/akdlakdasdansda4c1naodasosn?s=35",style:"border-radius:50%;",alt:"profile-photo"%>
-      	</a>
+      	<!--a class="navbar-brand" href="#">
+      		<%# image_tag "https://www.gravatar.com/avatar/akdlakdasdansda4c1naodasosn?s=35",style:"border-radius:50%;",alt:"profile-photo"%>
+      	</a-->
+        <%= link_to(image_tag("https://www.gravatar.com/avatar/akdlakdasdansda4c1naodasosn?s=35",style:"border-radius:50%;",alt:"profile-photo"),profile_path(current_user),class:"navbar-brand")%>
       <%end%>
     </div>
   </div>

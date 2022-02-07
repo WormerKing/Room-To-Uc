@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
 	before_action :select_user,only: %i[ show edit update destroy ]
+	before_action only:%i[ edit update destroy ] do
+		validate_permission!(select_user)
+	end
 	def new
+		#if signed_in?
+		#	redirect_to(profile_path(current_user))
+		#end
 		@user = User.new
 	end
 
@@ -20,14 +26,14 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		if @user.username == current_user.username
+		if @user == current_user
 			@data = params[:sayfa] if ["girdiğim-odalar","geçmiş","ödüllerim","cezalarım","hesap-durumum"].include? params[:sayfa]
 		end
 		render layout:"profile"
 	end
 
 	def edit
-		
+		render layout:"profile"
 	end
 	def destroy
 		logout(@user)
@@ -41,11 +47,5 @@ class UsersController < ApplicationController
 	end
 	def select_user
 		@user = User.find_by_username(params[:id])
-
-		load_error_page unless @user
 	end
-	def load_error_page
-		render file:"#{Rails.root}/public/404.html",status: :not_found
-	end
-
 end

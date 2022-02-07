@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get "/oturum_ac",to:"session#new",as: :login
-  delete "/logout",to: "session#destroy",as: :logout
+  get "/oturum_ac",to:"sessions#new",as: :login
+  delete "/oturumu_kapat",to: "sessions#destroy",as: :logout
 
   resource :session,only: :create
 
@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   resources :users,only: %i[ create update destroy ]
   get "/:id",to:"users#show",as: :profile
-  get "/:id/düzenle",to:"users#edit",as: :edit_user
+  get "/:id/düzenle",to:"users#edit",as: :edit_profile
 end

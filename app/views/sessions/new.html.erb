@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag "login_user"%>
+<% content_for :title do%>
+	Giriş yap
+<%end%>
+<script>
+  function kaydır() {
+    window.scrollTo(0,document.body.scrollHeight);
+  }
+</script>
+<section class="vh-120 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 yazı">Giriş yap</h3>
+            <%= form_for :session,url:session_path do |form|%>
+              <div class="row">
+                <div class="col-md-12 mb-4">
+                  <div class="form-outline">
+                    <%= form.text_field :first_name,id:"firstName",class:"form-control form-control-lg",required:"",placeholder:"Kullanıcı adı"%>
+                </div>
+              <div class="row">
+              	<div class="col-md-12 mb-4 pb-2 mt-3">
+              		<div class="forum-outline">
+              			<%= form.password_field :password,class:"form-control form-control-lg",placeholder:"Şifre",required:""%>
+              		</div>
+              	</div>
+              </div>
+              <div class="mt-1 pt-4 submit_button">
+                <%= form.submit "Giriş yap",class:"btn btn-primary btn-lg right"%>
+              </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if flash[:error]%>
+    <div class="error-messages bg-danger">
+      <ul>
+        <% flash.each do |type,error|%>
+          <li><%= error%></li>
+        <%end%>
+      </ul>
+    </div>
+  <%end%>
+</section>
+<%= scroll_method if flash[:error]%>
