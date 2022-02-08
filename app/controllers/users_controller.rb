@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_action :select_user,only: %i[ show edit update destroy ]
 	before_action only:%i[ edit update destroy ] do
 		validate_permission!(select_user)
+		# TODO düzenle parametre ile çalışıyor !
 	end
 	def new
 		#if signed_in?
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
 		render layout:"profile"
 	end
 	def destroy
-		logout(@user)
+		logout
 		@user.destroy
 		redirect_to register_path,notice:"Profiliniz başarıyla silindi"
 	end
