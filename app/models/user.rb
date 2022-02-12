@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 	has_secure_password
+	has_many :creator_rooms,class_name:"Room",foreign_key:"creator_id",dependent: :destroy
+	has_many :winner_rooms,class_name:"Room",foreign_key:"winner_id",dependent: :destroy
+	has_and_belongs_to_many :rooms,dependent: :destroy
 
 	validates_presence_of :first_name,:last_name,:username,:role,:pubg_id,:email,:password_digest
 

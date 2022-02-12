@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :select_user,only: %i[ show edit update destroy ]
+	
 	before_action only:%i[ edit update destroy ] do
 		validate_permission!(select_user)
 		# TODO düzenle parametre ile çalışıyor !
