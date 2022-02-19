@@ -13,11 +13,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <div class="conteiner">
-      <div class="row">
-        <%= render "layouts/top_bar"%>
-      </div>
+  <body style="background:#e6e6e6;">
+    <%= render "layouts/top_bar"%>
+    <div class="container-fluid p-0 overflow-hidden">
       <%= content_for?(:content) ? yield(:content) : yield%>
     </div>
   </body>

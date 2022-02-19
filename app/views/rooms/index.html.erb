@@ -1,0 +1,26 @@
+<div class="row bg-danger" style="height:80px;">
+	<div>
+		reklam alanı 1
+	</div>
+</div>
+<div class="row mt-2">
+	<div class="col-md-2">	
+		<div class="container bg-warning link">
+			hello
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="container bg-primary">
+			<% @rooms.each do |room|%>
+				<div style="text-align:center;">
+					<%= link_to("#{room.creator.username}",room_path(room.id),class:"text-dark mb-1")%>
+				</div>
+			<%end%>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="container bg-warning">
+			hello
+		</div>
+	</div>
+</div>

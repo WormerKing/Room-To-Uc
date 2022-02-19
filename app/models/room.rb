@@ -4,5 +4,7 @@ class Room < ApplicationRecord
 
   has_and_belongs_to_many :users,dependent: :destroy
 
-  validates :winner,presence:false
+  validates_presence_of :rules,:online,:password,:room_id
+
+  scope :online_rooms,-> {where(online:true)}
 end

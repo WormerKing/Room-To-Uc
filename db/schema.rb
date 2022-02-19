@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_125413) do
+ActiveRecord::Schema.define(version: 2022_02_12_182530) do
 
   create_table "rooms", force: :cascade do |t|
-    t.text "rules"
-    t.boolean "online"
-    t.integer "room_id"
-    t.string "password"
+    t.text "rules", null: false
+    t.boolean "online", null: false
+    t.integer "room_id", null: false
+    t.string "password", null: false
     t.integer "winner_id"
     t.integer "creator_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "tip"
     t.index ["creator_id"], name: "index_rooms_on_creator_id"
     t.index ["winner_id"], name: "index_rooms_on_winner_id"
   end

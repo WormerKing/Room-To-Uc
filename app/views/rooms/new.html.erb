@@ -1,0 +1,25 @@
+<div class="">
+	<%= form_for @room do |form|%>
+		<div class="form-control">
+			<%= form.text_area :rules,placeholder:"Kurallar"%>
+		</div>
+		<div class="form-control">
+			<%= form.text_field :online,placeholder:"Online"%>
+		</div>
+		<div class="form-control">
+			<%= form.text_field :room_id,placeholder:"Oda numarası"%>
+		</div>
+		<div class="form-control">
+			<%= form.text_field :password,placeholder:"Oda şifresi"%>
+		</div>
+		<div class="form-control">
+			<%= form.text_field :tip,placeholder:"Oda tipi"%>
+		</div>
+		<%= form.submit "Oda oluştur",class:"btn btn-primary"%>
+	<%end%>
+	<% if @room.errors.any?%>
+		<% @room.errors.full_messages.each do |error|%>
+			<li><%= error%></li>
+		<%end%>
+	<%end%>
+</div>
