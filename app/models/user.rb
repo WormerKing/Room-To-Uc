@@ -15,7 +15,7 @@ class User < ApplicationRecord
 	
 	validates :role,inclusion:{in:["janitor","player"]}
 
-	validates :pubg_id,length:{is:10}
+	validates :pubg_id,length:{is:10,messages:"Pubg_id uzunluğu en az on karakter olmalıdır"}
 	def to_param
 		username
 	end

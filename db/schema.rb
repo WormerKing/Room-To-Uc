@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_182530) do
+ActiveRecord::Schema.define(version: 2022_02_23_200410) do
 
   create_table "rooms", force: :cascade do |t|
     t.text "rules", null: false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2022_02_12_182530) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tip"
+    t.string "title"
+    t.datetime "last_activity_at"
     t.index ["creator_id"], name: "index_rooms_on_creator_id"
     t.index ["winner_id"], name: "index_rooms_on_winner_id"
   end

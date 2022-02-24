@@ -5,6 +5,12 @@ class UsersController < ApplicationController
 		validate_permission!(select_user)
 		# TODO düzenle parametre ile çalışıyor !
 	end
+
+	before_action only:%i[ show ] do
+		if @user.nil?
+			redirect_to("/")
+		end
+	end
 	def new
 		#if signed_in?
 		#	redirect_to(profile_path(current_user))

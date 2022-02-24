@@ -5,8 +5,6 @@ ruby '3.0.1'
 
 gem 'rails', '~> 6.1.4', '>= 6.1.4.4'
 
-gem 'sqlite3', '~> 1.4'
-
 gem 'puma', '~> 5.0'
 
 gem 'sass-rails', '>= 6'
@@ -49,6 +47,7 @@ group :development do
   gem 'guard'
   gem 'guard-zeus'
   gem 'rack-livereload'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :test do
@@ -57,5 +56,9 @@ group :test do
   gem 'webdrivers'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+group :production do 
+  gem 'pg', '~> 1.3', '>= 1.3.2'
+end

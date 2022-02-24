@@ -1,2 +1,20 @@
-<%= @room.creator.username%>
-<%= link_to("Odaya katıl",button_click_path,class:"btn btn-secondary") if control_room%>
+<div class="container bg-warning mt-4 h-100" style="text-align: center;">
+	<h5 class="pt-2">Oda kurucusu : <%= @room.creator.username%></h5><hr/>
+	<strong>Kurallar</strong><br/><p><%= @room.rules%></p><hr/>
+	<strong>Tip</strong><p><%= @room.tip%></p><hr/>
+	<strong>Aktif</strong><p><%= @room.online ? "Evet" : "Hayır"%></p><hr/>
+	<% if creator_account(@room)%>
+		<h1>Bu oda senin</h1>
+	<%end%>
+	<% if @room.online%>
+		<% if control_room(@room) && sil(@room) && !(creator_account(@room)) %>
+			<%= link_to("Odaya katıl",button_click_path,class:"btn btn-secondary mt-5 mb-2")%>
+		<%elsif creator_account(@room)%>
+			<%= link_to("Odayı bitir",edit_room_path(@room),class:"btn btn-danger")%>
+		<%elsif @room.users.include?(current_user)%>
+			<h5 class="pb-4">Bu odaya katıldın</h5>
+		<%end%>
+	<%else%>
+		<h5>Bu oda sona ermiş</h5>
+	<%end%>
+</div>

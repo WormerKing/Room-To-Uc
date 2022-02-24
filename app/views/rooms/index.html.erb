@@ -12,8 +12,9 @@
 	<div class="col-md-8">
 		<div class="container bg-primary">
 			<% @rooms.each do |room|%>
-				<div style="text-align:center;">
-					<%= link_to("#{room.creator.username}",room_path(room.id),class:"text-dark mb-1")%>
+				<div class="mt-1" style="border:1px solid blue;">
+					<%= link_to("#{room.title}",room_path(room.id),class:"text-dark mb-1",style:"text-decoration:none;")%>
+					<span class="float-end"><%= link_to(room.creator.username,profile_path(room.creator.username),class:"text-dark")%> tarafından oluşturuldu.</span>
 				</div>
 			<%end%>
 		</div>
