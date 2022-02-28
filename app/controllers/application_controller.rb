@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
 	rescue_from ActiveRecord::RecordNotFound,:with => :load_error_page
 	private
+
+	def find_user(**sözlük)
+		User.find_by(sözlük)
+	end
+
 	def control_room(room)
 		unless current_user.nil? || room.users.include?(current_user) || current_user.rooms.pluck(:online).include?(true)
 			return true
 		end
-		# TODO kullanıcı odaya girmiş olsa bile giriş yap butonu çıkıyor 
 	end
 
 	def sil(room)

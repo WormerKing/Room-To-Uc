@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   resource :session,only: :create
 
-  get "/room/:id",to: "rooms#show",as: :room
+  #get "/room/:id",to: "rooms#show",as: :other_room
 
-  resources :rooms,except:%i[ show index destroy ],path_names:{edit:"düzenle"}
+  resources :rooms,except:%i[ index destroy ],path_names:{edit:"düzenle"}
   
   #get "/rooms",to:redirect("/")
 
@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   get "/:id",to:"users#show",as: :profile
   get "/:id/düzenle",to:"users#edit",as: :edit_profile
 
-  get "/room/:id/join",to:"rooms#join",as: :button_click
-  get "/room/:id/show_password",to:"rooms#show_password",as: :show_password
+  get "/rooms/:id/join",to:"rooms#join",as: :button_click
+  get "/rooms/:id/show_password",to:"rooms#show_password",as: :show_password
 
   root "rooms#index"
 end

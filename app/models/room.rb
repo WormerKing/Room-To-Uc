@@ -4,6 +4,8 @@ class Room < ApplicationRecord
 
   has_and_belongs_to_many :users,dependent: :destroy
 
+  has_one_attached :video
+
   validates_presence_of :rules,:online,:password,:room_id
 
   validates :tip,inclusion:{in:["takımlı","eşli","tekli"]}

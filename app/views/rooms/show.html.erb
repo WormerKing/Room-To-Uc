@@ -6,7 +6,7 @@
 	<% if creator_account(@room)%>
 		<h1>Bu oda senin</h1>
 	<%end%>
-	<% if @room.online%>
+	<% if @room.online && current_user.role == "player"%>
 		<% if control_room(@room) && sil(@room) && !(creator_account(@room)) %>
 			<%= link_to("Odaya katıl",button_click_path,class:"btn btn-secondary mt-5 mb-2")%>
 		<%elsif creator_account(@room)%>
@@ -14,7 +14,9 @@
 		<%elsif @room.users.include?(current_user)%>
 			<h5 class="pb-4">Bu odaya katıldın</h5>
 		<%end%>
-	<%else%>
+	<%elsif @room.online == false%>
 		<h5>Bu oda sona ermiş</h5>
+	<%elsif current_user.role == "janitor"%>
+		<h5>Oda oluşturucular başka odalara katılamazlar</h5>
 	<%end%>
 </div>

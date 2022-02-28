@@ -10,42 +10,26 @@
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5" style="text-align:center;">Oda aç</h3>
-            <%= form_for(@room,class:"needs-validation") do |form|%>
-              	<div class="row">
-                	<div class="col-md-6 mb-4">
-                  		<div class="form-outline">
-                    		<%= form.text_field :title,id:"firstName",class:"form-control form-control-lg",required:"",placeholder:"Oda ismi"%>
-                    	<div class="invalid-feedback">
-                      		Burasının doldurulması gerekiyor
-                    	</div>
-                  	</div>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5" style="text-align:center;">Odayı sonlandır</h3>
+            <%= form_for @room do |form|%>
+              <div class="row">
+              	<div class="col-md-12 mb-4">
+                		<div class="form-outline">
+                  		<%= form.text_field :winner,id:"Winner",class:"form-control form-control-lg",required:"",placeholder:"Kazanan oyuncu"%>
                 	</div>
+              	</div>
             	</div>
               <div class="row">
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-
-                  <div class="form-outline datepicker w-100">
-                  	<%= form.number_field :room_id,class:"form-control form-control-lg",required:"",placeholder:"Oda numarası"%>
-                  </div>
-
-                </div>
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-
+                <div class="col-md-12 mb-4">
                   <div class="form-outline">
-                    <%= form.password_field :password,class:"form-control form-control-lg",placeholder:"Oda şifresi",required:""%>
+                    <%= form.label "Oda videosu",class:"form-label"%>
+                    <%= form.file_field :video,class:"form-control form-control-lg",required:""%>
                   </div>
-              	</div>
-              </div>
-              <div class="row">
-                <div class="col-12 mt-4 d-flex align-items-center">
-                	<%= form.text_area :rules,class:"form-control form-control-lg",placeholder:"Kurallar",style:"max-height:130px;"%>
-                	<%# form.labe%>
                 </div>
               </div>
               <div class="mt-1 pt-4 submit_button" style="text-align: center;">
                 <!--input class="btn btn-primary btn-lg" type="submit" value="Submit" -->
-                <%= form.submit "Odayı sonlandır",class:"btn btn-danger btn-lg"%>
+                <%= form.submit "Odayı sonlandır",data:{confirm:"Emin misiniz ?\nBu işlem geri alınamaz!"},class:"btn btn-danger btn-lg"%>
               </div>
             <%end%>
           </div>
