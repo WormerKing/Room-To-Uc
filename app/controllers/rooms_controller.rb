@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 	before_action :select_room,only: %i[ update show edit join ]
 	
-	before_action only:%i[ index ] do
+	before_action only:%i[ index show ] do
 		Room.denetle
 	end
 	def index
@@ -70,6 +70,7 @@ class RoomsController < ApplicationController
 	end
 
 	private
+
 	def select_room
 		@room = Room.find(params[:id])
 	end
