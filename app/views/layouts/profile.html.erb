@@ -7,14 +7,9 @@
       		<h5 class="float-end" style="display:inline;margin-top:10px;"><%= "#{@user.first_name} #{@user.last_name}"%></h5>
       		<% if @user == current_user%>
 	      		<div class="row" style="margin-top:10px;">
-	      			<div class="col-md-6">
-	      				<%= link_to "Girdiğim odalar",profile_path(@user,sayfa:"girdiğim-odalar"),class:"btn btn-secondary"%>
-	      				<%= link_to "Kazandığım ödüller",profile_path(@user,sayfa:"ödüllerim"),class:"btn btn-warning"%>
-	      				<%= link_to "Geçmişim",profile_path(@user,sayfa:"geçmiş"),class:"btn btn-secondary"%>
-	      			</div>
-	      			<div class="col-md-6">
-	      				<%= link_to "Hesap durumu",profile_path(@user,sayfa:"hesap-durumum"),class:"btn btn-secondary float-end",style:"margin-left:4px;"%>
-	      				<%= link_to "Cezalarım",profile_path(@user,sayfa:"cezalarım"),class:"btn btn-danger float-end"%>
+	      			<div class="col-md-12">
+	      				<%= link_to "Kazandığım ödüller",prize_path(@user.username),class:"btn btn-warning"%>
+	      				<%= link_to "Geçmişim",history_path(@user.username),class:"btn btn-secondary float-end"%>
 	      			</div>
 	      		</div>
 	      	<%end%>

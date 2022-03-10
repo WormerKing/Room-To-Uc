@@ -2,11 +2,8 @@ Rails.application.routes.draw do
   get "/oturum_ac",to:"sessions#new",as: :login
   delete "/oturumu_kapat",to: "sessions#destroy",as: :logout
 
-  get "/:id/girdiğim-odalar",to: "profile_features#odalar",as: :oda
-  get "/:id/geçmiş",to: "profile_features#geçmiş",as: :histroy
+  get "/:id/geçmiş",to: "profile_features#geçmiş",as: :history
   get "/:id/ödüllerim",to: "profile_features#ödüllerim",as: :prize
-  get "/:id/cezalarım",to: "profile_features#cezalarım",as: :punishment
-  get "/:id/hesabım",to: "profile_features#hesabım",as: :my_profile
 
   resource :session,only: :create
 

@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
 		@room = Room.new(params.require(:room).permit!)
 
 		@room.creator = current_user
-		@room.winner = current_user
+		#@room.winner = current_user
 		@room.online = true
 
 		if @room.save
@@ -36,7 +36,7 @@ class RoomsController < ApplicationController
 
 	def update
 
-		@winner_user = find_user(username:params[:room][:winner]) # FIXME require kullanılarak yazılacak
+		# @winner_user = find_user(username:params[:room][:winner]) # FIXME require kullanılarak yazılacak
 
 		# FIXME kazanan kullanıcı düzenlenemiyor ve video eklenemiyor
 		# TODO find_user metodunu güncelle
@@ -44,7 +44,7 @@ class RoomsController < ApplicationController
 		@room.update(params.require(:room).permit(:video))
 		
 		@room.update_column(:online,false)
-		@room.update_column(:winner_id,@winner_user.id)
+		#@room.update_column(:winner_id,@winner_user.id)
 
 		redirect_to("/")
 	end

@@ -5,19 +5,10 @@ class ProfileFeaturesController < ApplicationController
 		validate_permission! select_user
 	end
 	around_action :load_layout,only: array
-
-	def odalar
-
-	end
-	def cezalarım
-	end
-
+	
 	def geçmiş
 	end
 	def ödüllerim
-	end
-
-	def hesabım
 	end
 
 	private

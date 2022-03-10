@@ -3,3 +3,4 @@
 # TODO oda girişleri sadece oyunculara özel yapılacak
 # TODO kullanıcı profilleri mobil için düzenlenecek
 # TODO oda sonlandırmada radio button eklencek
+# TODO oda sonlandırmada çoklu kullanıcı seçimi eklencek

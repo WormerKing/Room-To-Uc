@@ -9,14 +9,14 @@
 	<% if @room.online && current_user.role == "player"%>
 		<% if control_room(@room) && sil(@room) && !(creator_account(@room)) %>
 			<%= link_to("Odaya katıl",button_click_path,class:"btn btn-secondary mt-5 mb-2")%>
-		<%elsif creator_account(@room)%>
-			<%= link_to("Odayı bitir",edit_room_path(@room),class:"btn btn-danger")%>
 		<%elsif @room.users.include?(current_user)%>
 			<h5 class="pb-4">Bu odaya katıldın</h5>
 		<%end%>
 	<%elsif @room.online == false%>
 		<h5>Bu oda sona ermiş</h5>
-	<%elsif current_user.role == "janitor"%>
+	<%elsif current_user.role == "janitor" && @room.creator.username != current_user.username%>
 		<h5>Oda oluşturucular başka odalara katılamazlar</h5>
+	<%elsif @room.creator.username == current_user.username%>
+		<%= link_to("Odayı bitir",edit_room_path(@room),class:"btn btn-danger")%>
 	<%end%>
 </div>
