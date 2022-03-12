@@ -35,16 +35,11 @@ class RoomsController < ApplicationController
 	end
 
 	def update
+		params[:winners].each {|i| @room.winners << User.find_by_username(i) if @room.users.include?(User.find_by_username(i)) && current_user.role == "janitor"}		
 
-		# @winner_user = find_user(username:params[:room][:winner]) # FIXME require kullanılarak yazılacak
-
-		# FIXME kazanan kullanıcı düzenlenemiyor ve video eklenemiyor
-		# TODO find_user metodunu güncelle
-
-		@room.update(params.require(:room).permit(:video))
+		#@room.update(params.require(:room).permit(:video))
 		
-		@room.update_column(:online,false)
-		#@room.update_column(:winner_id,@winner_user.id)
+		#@room.update_column(:online,false)
 
 		redirect_to("/")
 	end
@@ -72,6 +67,6 @@ class RoomsController < ApplicationController
 	private
 
 	def select_room
-		@room = Room.find(params[:id])
+		@room = Room.find(params[:id].to_i)
 	end
 end

@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 	
 	before_action only:%i[ edit update destroy ] do
 		validate_permission!(select_user)
-		# TODO düzenle parametre ile çalışıyor !
 	end
 
 	before_action only:%i[ show ] do
@@ -34,9 +33,6 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		if @user == current_user
-			@data = params[:sayfa] if ["girdiğim-odalar","geçmiş","ödüllerim","cezalarım","hesap-durumum"].include? params[:sayfa]
-		end
 		render layout:"profile"
 	end
 

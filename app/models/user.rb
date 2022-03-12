@@ -1,5 +1,11 @@
 class User < ApplicationRecord
 	has_secure_password
+
+	#around_save do 
+	#	username.strip!
+	#	first_name.strip!
+	#	last_name.strip!
+	#end
 	
 	has_many :creator_rooms,class_name:"Room",foreign_key:"creator_id",dependent: :destroy
 	
@@ -11,6 +17,8 @@ class User < ApplicationRecord
 
 	validates_uniqueness_of :username,:pubg_id,:email,case_sensitive:false
 	
+	# FIXME kullanıcı oluşturma kısmında boşluk karakteri sıkıntı çıkarıyor
+
 	validates :username,format:{with:/[a-z0-9A-Z_-]/},length:{minimum:4,maximum:12}
 	validates_format_of :first_name,:last_name,with:/[a-z0-9A-Z]/
 
@@ -22,4 +30,5 @@ class User < ApplicationRecord
 	def to_param
 		username
 	end
+
 end

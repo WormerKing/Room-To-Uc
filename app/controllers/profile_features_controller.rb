@@ -1,9 +1,12 @@
 class ProfileFeaturesController < ApplicationController
-	array = %i[ odalar cezalarım geçmiş ödüllerim hesabım]
+	array = %i[ geçmiş ödüllerim]
+	
 	before_action :select_user,only: array
+	
 	before_action only: array do
 		validate_permission! select_user
 	end
+	
 	around_action :load_layout,only: array
 	
 	def geçmiş
