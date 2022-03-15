@@ -1,1 +1,6 @@
-.deneme { border:1px solid #ccc; width:%100; height: %100; }
+.deneme {
+    max-height: 200px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+    background:#f7f7f7;
+}

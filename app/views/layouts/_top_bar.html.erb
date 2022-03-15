@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "top_bar"%>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:60px;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom" style="height:60px;">
   <div class="container-fluid top-bar-itele">
     <a class="navbar-brand ms-0 ms-md-5" href="/">Room To Uc</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,9 +24,6 @@
         <%end%>
       </ul>
       <% if signed_in?%>
-      	<!--a class="navbar-brand" href="#">
-      		<%# image_tag "https://www.gravatar.com/avatar/akdlakdasdansda4c1naodasosn?s=35",style:"border-radius:50%;",alt:"profile-photo"%>
-      	</a-->
         <%= link_to(image_tag("https://www.gravatar.com/avatar/akdlakdasdansda4c1naodasosn?s=35",style:"border-radius:50%;",alt:"profile-photo"),profile_path(current_user),class:"navbar-brand")%>
       <%end%>
     </div>

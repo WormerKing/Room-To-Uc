@@ -10,8 +10,11 @@ class ProfileFeaturesController < ApplicationController
 	around_action :load_layout,only: array
 	
 	def geçmiş
+
 	end
+	
 	def ödüllerim
+	
 	end
 
 	private

@@ -1,0 +1,5 @@
+<% content_for :profile_content do %>
+	<% @user.won_rooms.each do |win|%>
+		<p><%= win.title%></p>
+	<%end%>
+<%end%>

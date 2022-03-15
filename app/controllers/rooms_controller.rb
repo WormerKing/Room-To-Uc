@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
 	before_action :select_room,only: %i[ update show edit join ]
 	
+	before_action only:%i[ edit update ] do
+		@max_users = @room.tip == "takımlı" ? 4 : @room.tip == "eşli" ? 2 : 1
+	end
+
 	before_action only:%i[ index show ] do
 		Room.denetle
 	end
@@ -15,7 +19,6 @@ class RoomsController < ApplicationController
 		@room = Room.new(params.require(:room).permit!)
 
 		@room.creator = current_user
-		#@room.winner = current_user
 		@room.online = true
 
 		if @room.save
@@ -28,20 +31,30 @@ class RoomsController < ApplicationController
 		end
 	end
 
-	def edit
-		unless creator_account(@room)
+	def edit 
+		unless creator_account(@room) && @room.online
 			redirect_to(room_path(@room))
 		end
 	end
 
 	def update
-		params[:winners].each {|i| @room.winners << User.find_by_username(i) if @room.users.include?(User.find_by_username(i)) && current_user.role == "janitor"}		
+		if params[:winners].size == @max_users
+			params[:winners].each do |i| 
+				if @room.users.include?(User.find_by_username(i)) && current_user.role == "janitor"
+					@room.winners << User.find_by_username(i) 
+				end
+			end		
 
-		#@room.update(params.require(:room).permit(:video))
+			#@room.update(params.require(:room).permit(:video))
 		
-		#@room.update_column(:online,false)
-
-		redirect_to("/")
+			#@room.update_column(:online,false)
+		
+			redirect_to("/")
+			# TODO buraya api hizmetine gönderilecek sonucu eklenecek
+			# TODO HTTParty.post ile gönder
+		else
+			redirect_to(edit_room_path(@room.id))
+		end
 	end
 
 	def show
@@ -67,6 +80,6 @@ class RoomsController < ApplicationController
 	private
 
 	def select_room
-		@room = Room.find(params[:id].to_i)
+		@room = Room.find(params[:id])
 	end
 end

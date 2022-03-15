@@ -1,8 +1,26 @@
 <%= stylesheet_link_tag "edit_room"%>
 <script>
-  function kaydır() {
+function kaydır() {
     window.scrollTo(0,document.body.scrollHeight);
-  }
+}
+
+function onlyOneCheckBox(limit) {
+    var limit = limit;
+    var checkboxgroup = document.getElementById('checkboxgroup').getElementsByTagName("input");
+    for (var i = 0; i < checkboxgroup.length; i++) {
+        checkboxgroup[i].onclick = function() {
+            var checkedcount = 0;
+            for (var i = 0; i < checkboxgroup.length; i++) {
+                checkedcount += (checkboxgroup[i].checked) ? 1 : 0;
+            }
+            if (checkedcount > limit) {
+                console.log("You can select maximum of " + limit + " checkbox.");
+                this.checked = false;
+            }
+        }
+    }
+}
+
 </script>
 <section class="vh-120">
   <div class="container py-4 h-100">
@@ -14,12 +32,18 @@
             <%= form_for @room do |form|%>
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <div class="form-check">
-                            <% @room.users.each do |user|%>
-                                <%= check_box_tag("winners[]", value = user.username, checked = false,class:"form-check-input")%>
-                                <%= form.label user.username,class:"form-check-label"%><br/>
-                            <%end%>
+                        <h3 class="text-center">Kazanan kullanıcıları seç</h3>
+                        <div class="p-2 mt-3 deneme">
+                            <div id="checkboxgroup" class="form-check">
+                                <% @room.users.each do |user|%>
+                                    <%= check_box_tag("winners[]", value = user.username, checked = false,class:"form-check-input")%>
+                                    <%= form.label user.username,class:"form-check-label"%><br/>
+                                <%end%>
+                            </div>
                         </div>
+                        <script>
+                            onlyOneCheckBox(<%= @max_users%>);
+                        </script>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-4">
@@ -30,7 +54,6 @@
                     </div>
                 </div>
                 <div class="mt-1 pt-4 submit_button" style="text-align: center;">
-                <!--input class="btn btn-primary btn-lg" type="submit" value="Submit" -->
                     <%= form.submit "Odayı sonlandır",data:{confirm:"Emin misiniz ?\nBu işlem geri alınamaz!"},class:"btn btn-danger btn-lg"%>
                 </div>
             <%end%>
