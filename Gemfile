@@ -17,6 +17,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'base64', '~> 0.1.1'
+
 gem 'httparty', '~> 0.20.0'
 
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'

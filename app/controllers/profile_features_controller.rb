@@ -14,7 +14,9 @@ class ProfileFeaturesController < ApplicationController
 	end
 	
 	def ödüllerim
-	
+		if @user.role == "janitor"
+			redirect_to("/")
+		end
 	end
 
 	private

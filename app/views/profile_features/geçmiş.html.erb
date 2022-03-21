@@ -1,11 +1,25 @@
 <% content_for(:profile_content) do%>
-	<% if @user.role == "player"%>
-		<% @user.rooms.each do |room|%>
-			<%= link_to room.title,room_path(room.id),class:"btn btn-primary"%>
+	<div class="text-center">
+		<% if @user.role == "player"%>
+			<% @user.rooms.each do |room|%>
+				<%= link_to room.title,room_path(room.id),class:"btn btn-primary"%><hr/>
+			<%end%>
+			<p>
+				Toplam katıldığın oda sayısı :
+				<%= @user.rooms.length%>
+			</p>
+		<%elsif @user.role == "janitor"%>
+			<% @user.creator_rooms.each do |creator|%>
+				<%= link_to creator.title,room_path(creator.id),class:"btn btn-primary"%><hr/>
+			<%end%>
+			<p>
+				Toplam açtığın oda sayısı :
+				<%= @user.creator_rooms.length%>
+			</p>
+			<p>
+				Toplam kazandığın uc :
+				<%= (@user.creator_rooms.length) * 20%>
+			</p>
 		<%end%>
-	<%elsif @user.role == "janitor"%>
-		<% @user.creator_rooms.each do |creator|%>
-			<%= link_to creator.title,room_path(creator.id),class:"btn btn-primary"%>
-		<%end%>
-	<%end%>
+	</div>
 <%end%>

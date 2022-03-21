@@ -11,9 +11,9 @@ class UsersController < ApplicationController
 		end
 	end
 	def new
-		#if signed_in?
-		#	redirect_to(profile_path(current_user))
-		#end
+		if signed_in?
+			redirect_to(profile_path(current_user))
+		end
 		@user = User.new
 	end
 

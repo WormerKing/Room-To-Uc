@@ -8,8 +8,14 @@
       		<% if @user == current_user%>
 	      		<div class="row" style="margin-top:10px;">
 	      			<div class="col-md-12">
-	      				<%= link_to "Kazandığım ödüller",prize_path(@user.username),class:"btn btn-warning"%>
-	      				<%= link_to "Geçmişim",history_path(@user.username),class:"btn btn-secondary float-end"%>
+	      				<% if @user.role == "player"%>
+	      					<%= link_to "Kazandığım ödüller",prize_path(@user.username),class:"btn btn-warning"%>
+	      					<%= link_to "Geçmişim",history_path(@user.username),class:"btn btn-secondary float-end"%>
+	      				<%else%>
+	      					<div class="text-center">
+	      						<%= link_to "Kurduğum odalar",history_path(@user.username),class:"btn btn-primary"%>
+	      					</div>
+	      				<%end%>
 	      			</div>
 	      		</div>
 	      	<%end%>

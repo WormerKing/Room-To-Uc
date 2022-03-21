@@ -1,5 +1,13 @@
 <% content_for :profile_content do %>
-	<% @user.won_rooms.each do |win|%>
-		<p><%= win.title%></p>
+	<% unless current_user.role == "janitor"%>
+		<div class="text-center">
+			<% @user.won_rooms.each do |win|%>
+				<%= link_to win.title,room_path(win.id),class:"btn btn-primary"%><hr/>
+			<%end%>
+			<p>
+				Toplam kazandığın uc :
+				<%= ((@user.won_rooms.length / 3) * 60)%>
+			</p>
+		</div>
 	<%end%>
 <%end%>

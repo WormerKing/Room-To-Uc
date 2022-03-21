@@ -1,7 +1,6 @@
-<style>
-  .page-not-found {
-    background-color: #e6e6e5;
-    height: 80vh;
+.page-not-found {
+    background-color: #3f51b5;
+    height: 100vh;
 }
 .page-not-found h2 {
     font-size: 130px;
@@ -32,14 +31,3 @@
         width: 100%;
     }
 }
-</style>
-<div class="page-not-found pt-5">
-    <div class="bg-light shadow">
-        <h2>404</h2>
-        <h3 class="mt-4">Opps! Sayfa bulunamadı :(</h3>
-        <p>Ama endişelenme sadece aşağıdaki butona tıkla</p>
-        <div class="mt-5">
-            <button type="button" class="btn m-2 m-md-0 btn-primary" onclick="history.back();"><i class="bi bi-house-door-fill"></i> Geri</button>
-        </div>
-    </div>
-</div>
