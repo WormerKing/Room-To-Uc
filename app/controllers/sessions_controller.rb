@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
 
     	if user && user.authenticate(params[:session][:password])
 			login(user)
-			UserMailer.welcome(user:user).deliver_later
 			redirect_to profile_path(user),notice:"Başarıyla giriş yapıldı"
 		else
 			flash[:error] = "Kullanıcı adı/parola hatalı"

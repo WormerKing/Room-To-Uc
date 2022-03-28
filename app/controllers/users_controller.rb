@@ -14,21 +14,40 @@ class UsersController < ApplicationController
 		if signed_in?
 			redirect_to(profile_path(current_user))
 		end
-		@user = User.new
+		$new_user = User.new
 	end
 
 	def create
-		@user = User.new(user_params)
+		$new_user = User.new(user_params)
 
 		new_id = (User.last.id + 1 if User.last) || 1
-		@user.id = new_id
+		$new_user.id = new_id
 
-		if @user.save
-			login(@user)
-			flash[:notice] = "Kayıt işleminiz başarıyla gerçekleşti."
-			redirect_to(profile_path(@user.username))
+		if $new_user.valid?
+			redirect_to(verify_email_path)
 		else
 			render :new
+		end
+	end
+
+
+	def verify_email
+		@verify_code = rand(100000..999999)
+		UserMailer.with(user:$new_user,code:@verify_code).send_verify_email.deliver_now
+	end
+
+	def verify_email_post
+		if params[:verify_code] == @verify_code
+			UserMailer.with(user:$new_user).welcome_email.deliver_now
+			
+			$new_user.save
+			
+			$new_user.update_column(:confirmed,true)
+			login($new_user)
+			
+			redirect_to "/"
+		else
+			render "verify_email"
 		end
 	end
 
@@ -46,9 +65,11 @@ class UsersController < ApplicationController
 	end
 	
 	private
+
 	def user_params
 		params.require(:user).permit!
 	end
+
 	def select_user
 		@user = User.find_by_username(params[:id])
 	end

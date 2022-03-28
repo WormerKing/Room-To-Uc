@@ -14,7 +14,7 @@
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Kayıt Formu</h3>
-            <%= form_for(@user,class:"needs-validation") do |form|%>
+            <%= form_for($new_user,class:"needs-validation") do |form|%>
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
@@ -87,7 +87,7 @@
               	</div>
               </div>
               <div class="col-md-12 mb-2 pb-1 text-center">
-                <label class="form-label-lg">Kaydol butonuna basarak <%= link_to "Kullanıcı Sözleşmemizi","#"%> Kabul etmiş olursunuz.</label>
+                <label class="form-label-lg">Kaydol butonuna basarak <%= link_to "Kullanıcı Sözleşmemizi",user_agreement_path%> Kabul etmiş olursunuz.</label>
               </div>
               <div class="mt-1 pt-4 submit_button">
                 <!--input class="btn btn-primary btn-lg" type="submit" value="Submit" -->
@@ -107,14 +107,14 @@
       </div>
     </div>
   </div>
-  <% if @user.errors.any?%>
+  <% if $new_user.errors.any?%>
     <div class="error-messages bg-danger">
       <ul>
-        <% @user.errors.full_messages.each do |error|%>
+        <% $new_user.errors.full_messages.each do |error|%>
           <li><%= error%></li>
         <%end%>
       </ul>
     </div>
   <%end%>
 </section>
-<%= scroll_method if @user.errors.any?%>
+<%= scroll_method if $new_user.errors.any?%>

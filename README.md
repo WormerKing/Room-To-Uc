@@ -1,6 +1,7 @@
 # Room To Uc resmi web sitesi kod reposu
 
-## Eklenecekler:
-* Kullanıcı oluşturma/silme/düzenleme
-* Kayıt olma giriş yapma
+## Misyonumuz :
 
+<p>
+	Pubg mobile oyuncuları için odalar kurdurtup o odalara katılanlara ve kurucularına teşviklerde bulunmak.
+</p>

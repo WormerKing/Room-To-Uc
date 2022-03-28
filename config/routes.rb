@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "/kullanıcı_sözleşmesi",to:"users#user_agreement",as: :user_agreement
+
+  get "/verify_email",to:"users#verify_email",as: :verify_email
+  post "/verify_email",to:"users#verify_email_post",as: :verify_email_post
+
   get "/oturum_ac",to:"sessions#new",as: :login
   delete "/oturumu_kapat",to: "sessions#destroy",as: :logout
 

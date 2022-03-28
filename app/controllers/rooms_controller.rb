@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
 	before_action :select_room,only: %i[ update show edit join ]
-	
+
 	before_action only:%i[ edit update ] do
 		@max_users = @room.tip == "takımlı" ? 4 : @room.tip == "eşli" ? 2 : 1
 	end
@@ -8,6 +8,7 @@ class RoomsController < ApplicationController
 	before_action only:%i[ index show ] do
 		Room.denetle
 	end
+
 	def index
 		@rooms = Room.online_rooms
 	end

@@ -1,0 +1,7 @@
+<%= form_for :user,url:verify_email_post_path do |f| %>
+	<div>
+		<%= f.label "Email confirmation"%>
+		<%= f.number_field :verify_code%>
+	</div>
+	<%= f.submit "Doğrula"%>
+<%end%>

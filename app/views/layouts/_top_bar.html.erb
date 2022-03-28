@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag "top_bar"%>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom" style="min-height:61px;">
   <div class="container-fluid top-bar-itele">
     <a class="navbar-brand ms-0 ms-md-5" href="/">Room To Uc</a>
@@ -11,6 +9,9 @@
       	<% if signed_in?%>
           <li class="nav-item">
             <%= link_to("Oda aç",new_room_path,class:"nav-link active") if current_user.role == "janitor"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Hesabı doğrula",verify_email_path(current_user.username),class:"nav-link active" unless current_user.confirmed%>
           </li>
           <li class="nav-item">
               <%= link_to "Çıkış yap",logout_path,method: :delete,class:"nav-link active text-danger",data:{confirm:"Emin misiniz ? Tekrar giriş yapmanız gerekecek"}%>
