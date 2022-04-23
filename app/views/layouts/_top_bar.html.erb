@@ -11,9 +11,6 @@
             <%= link_to("Oda aç",new_room_path,class:"nav-link active") if current_user.role == "janitor"%>
           </li>
           <li class="nav-item">
-            <%= link_to "Hesabı doğrula",verify_email_path(current_user.username),class:"nav-link active" unless current_user.confirmed%>
-          </li>
-          <li class="nav-item">
               <%= link_to "Çıkış yap",logout_path,method: :delete,class:"nav-link active text-danger",data:{confirm:"Emin misiniz ? Tekrar giriş yapmanız gerekecek"}%>
           </li>
         <%else%>

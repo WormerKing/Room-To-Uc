@@ -1,7 +1,31 @@
-<%= form_for :user,url:verify_email_post_path do |f| %>
-	<div>
-		<%= f.label "Email confirmation"%>
-		<%= f.number_field :verify_code%>
-	</div>
-	<%= f.submit "Doğrula"%>
-<%end%>
+<%= stylesheet_link_tag "verify_email"%>
+<section class="vh-120 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5" style="text-align: center;">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Mail doğrulama</h3>
+            <%= form_for(:user,class:"needs-validation",url:verify_email_post_path) do |form|%>
+            
+              </div>
+              <div class="row">
+              	<div class="col-md-2"></div>
+              	<div class="col-md-8 pl-3 mb-5">
+              		<div class="form-outline pl-5 pr-5">
+              			<%= form.number_field :verify_code,class:"form-control form-control-lg",placeholder:"Doğrulama kodu",required:""%>
+              		</div>
+              	</div>
+              	<div class="col-md-2"></div>
+              </div>
+              <div class="row">
+              	<div class="mt-1 pt-4 submit_button pb-4">
+	           		<%= form.submit "Doğrula",class:"btn btn-primary btn-lg right"%>
+	            </div>
+	          </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

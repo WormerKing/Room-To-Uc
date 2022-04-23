@@ -32,12 +32,13 @@ class UsersController < ApplicationController
 
 
 	def verify_email
-		@verify_code = rand(100000..999999)
-		UserMailer.with(user:$new_user,code:@verify_code).send_verify_email.deliver_now
+		$verify_code = rand(100000..999999)
+		UserMailer.with(user:$new_user,code:$verify_code).send_verify_email.deliver_now
+
 	end
 
 	def verify_email_post
-		if params[:verify_code] == @verify_code
+		if params[:user][:verify_code] == $verify_code.to_s
 			UserMailer.with(user:$new_user).welcome_email.deliver_now
 			
 			$new_user.save

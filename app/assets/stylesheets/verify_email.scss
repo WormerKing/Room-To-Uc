@@ -1,0 +1,44 @@
+.gradient-custom {
+  height:100%;
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+}
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+a {
+  text-decoration:none;
+}
+
+hr {
+  display:inline;
+  width:50%;
+}
+
+
+span {
+  text-align:center;
+  margin-bottom: 10px;
+}
+
+.span_itele {
+  padding-left:25%;
+}
+
+.submit_button {
+  text-align:center;
+}
+
+.error-messages {
+  width:300px;
+  height:auto;
+  margin-left:auto;
+  margin-right:auto;
+  background: linear-gradient(to bottom right, rgba(240, 140, 240, 1), rgba(240, 82, 103, 1))
+}
