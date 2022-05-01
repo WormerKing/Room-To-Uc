@@ -1,8 +1,10 @@
 # Load the Rails application.
 require_relative "application"
 
+env_port = (Rails.env == "development" ? 587 : 465)
+
 ActionMailer::Base.smtp_settings = {
-    port: 587,
+    port:env_port,
     address: 'smtp.gmail.com',
     user_name: 'syuna648@gmail.com',
     password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
