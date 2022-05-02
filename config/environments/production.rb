@@ -56,8 +56,6 @@ Rails.application.configure do
     password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
     authentication: :plain,
     enable_starttls_auto: true,
-    open_timeout:5,
-    read_timeout:5
   }
 
   # Mount Action Cable outside main process or domain.
