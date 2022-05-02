@@ -36,26 +36,22 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   config.action_mailer.preview_path = "#{Rails.root}/tmp/mailers/previews"
-
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
-
   config.action_mailer.perform_deliveries = true
-  
   config.action_mailer.delivery_method = :smtp
-  
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-
-  #config.action_mailer.smtp_settings = {
-  #  port: 587,
-  #  address: 'smtp.gmail.com',
-  #  user_name: 'syuna648@gmail.com',
-  #  password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
-  #  authentication: :login,
-  #  enable_starttls_auto: true,
-  #  domain:'gmail.com'
-  #}
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'smtp.gmail.com',
+    user_name: 'syuna648@gmail.com',
+    password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
+    authentication: :plain,
+    enable_starttls_auto: true,
+    open_timeout:5,
+    read_timeout:5
+  }
 
 
 
