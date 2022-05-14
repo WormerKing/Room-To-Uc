@@ -55,8 +55,8 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     user_name: 'syuna648@gmail.com',
     password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
-    authentication: :login,
-    enable_starttls_auto: true,
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
   # Mount Action Cable outside main process or domain.

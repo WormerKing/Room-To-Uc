@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-	default from: 'syuna648@gmail.com'
+	default from: 'aferinsanaaferin@gmail.com'
 
 	def send_verify_email()
 		@user = params[:user]
