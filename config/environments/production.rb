@@ -49,25 +49,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => "https://room-to-uc.herokuapp.com" }
 
-  config.action_mailer.smtp_settings = {
-    domain:"https://room-to-uc.herokuapp.com",
-    port: 587,
-    address: 'smtp.sendgrid.com',
-    user_name: 'WSu3mKzxTtGI5Np9cDEyrg',
-    password: "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",
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
-
-  #config.action_mailer.smtp_settings = {
-  #  domain: "heroku.com",
-  #  port: 587,
-  #  address: 'smtp.gmail.com',
-  #  user_name: 'syuna648@gmail.com',
-  #  password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
-  #  authentication: :plain,
-  #  enable_starttls_auto: true
-  #}
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
