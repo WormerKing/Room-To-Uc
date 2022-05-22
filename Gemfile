@@ -27,6 +27,8 @@ gem 'jquery-rails', '~> 4.4'
 
 gem 'email_validator', '~> 2.2', '>= 2.2.3'
 
+gem 'sendgrid-ruby'
+
 # gem 'formvalidation-rails', '~> 0.8.1'
 
 # gem 'redis', '~> 4.0'

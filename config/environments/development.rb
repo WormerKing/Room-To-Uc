@@ -43,15 +43,24 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.action_mailer.smtp_settings = {
-    domain:"gmail.com",
+    domain:"https://room-to-uc.herokuapp.com",
     port: 587,
-    address: 'smtp.gmail.com',
-    user_name: 'syuna648@gmail.com',
-    password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
+    address: 'smtp.sendgrid.com',
+    user_name: 'WSu3mKzxTtGI5Np9cDEyrg',
+    password: "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",
     authentication: :plain,
     enable_starttls_auto: true
   }
 
+  #config.action_mailer.smtp_settings = {
+  #  domain:"gmail.com",
+  #  port: 587,
+  #  address: 'smtp.gmail.com',
+  #  user_name: 'syuna648@gmail.com',
+  #  password: Base64.decode64("U2hpbll1bmEwOTkw\n"),
+  #  authentication: :plain,
+  #  enable_starttls_auto: true
+  #}
 
 
   # Print deprecation notices to the Rails logger.
