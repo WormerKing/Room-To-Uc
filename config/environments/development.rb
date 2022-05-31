@@ -40,17 +40,17 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000',:protocol => "http"}
 
-  #config.action_mailer.smtp_settings = {
-  #  domain:"https://room-to-uc.herokuapp.com",
-  #  port: 587,
-  #  address: 'smtp.sendgrid.net',
-  #  user_name: 'WormerKing',
-  #  password: "PythonWormer0990",
-  #  authentication: :plain,
-  #  enable_starttls_auto: true
-  #}
+  config.action_mailer.smtp_settings = {
+    user_name: 'apikey', 
+    password: "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",
+    domain: 'localhost',
+    address: 'smtp.sendgrid.net',
+    port: "587",
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
 
   # Print deprecation notices to the Rails logger.
