@@ -39,14 +39,18 @@ class UsersController < ApplicationController
 
 	def verify_email_post
 		if params[:user][:verify_code] == $verify_code.to_s
-			UserMailer.with(user:$new_user).welcome_email.deliver_now
 			
-			$new_user.save
+			if $new_user.save
+
+				UserMailer.with(user:$new_user).welcome_email.deliver_now
+				
+				$new_user.update_column(:confirmed,true)
+				login($new_user)
 			
-			$new_user.update_column(:confirmed,true)
-			login($new_user)
-			
-			redirect_to "/"
+				redirect_to "/"
+			else
+				redirect_to(verify_email_path)
+			end
 		else
 			render "verify_email"
 		end
