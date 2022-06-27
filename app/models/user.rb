@@ -1,11 +1,7 @@
 class User < ApplicationRecord
 	has_secure_password
 
-	#around_save do 
-	#	username.strip!
-	#	first_name.strip!
-	#	last_name.strip!
-	#end
+	before_save { puts "---------------------------------------------------\nHello"}
 	
 	has_many :creator_rooms,class_name:"Room",foreign_key:"creator_id",dependent: :destroy
 	
@@ -31,5 +27,4 @@ class User < ApplicationRecord
 	def to_param
 		username
 	end
-
 end

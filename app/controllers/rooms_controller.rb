@@ -51,7 +51,7 @@ class RoomsController < ApplicationController
 			#@room.update_column(:online,false)
 		
 			redirect_to("/")
-			# TODO buraya api hizmetine gönderilecek sonucu eklenecek
+			# TODO buraya api hizmetine gönderilecek sunucu eklenecek
 			# TODO HTTParty.post ile gönder
 		else
 			redirect_to(edit_room_path(@room.id))
