@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2022_03_25_192250) do
     t.boolean "online", null: false
     t.integer "room_id", null: false
     t.string "password", null: false
+    t.string "mod", null: false
+    t.string "map", null: false
     t.integer "creator_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 	before_action :select_user,only: %i[ show edit update destroy ]
-
-	# TODO before_action ile username kısmını kaydetmeden önce kontrol et
 	
 	before_action only:%i[ edit update destroy ] do
 		validate_permission!(select_user)
@@ -28,7 +26,7 @@ class UsersController < ApplicationController
 		$new_user.username.strip!
 		$new_user.first_name.strip!
 		$new_user.last_name.strip!
-		
+
 		if $new_user.valid?
 			redirect_to(verify_email_path)
 		else

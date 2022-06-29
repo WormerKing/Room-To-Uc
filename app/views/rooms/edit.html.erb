@@ -4,6 +4,10 @@ function kaydır() {
     window.scrollTo(0,document.body.scrollHeight);
 }
 
+<% if flash[:error] %>
+    alert("<%= flash[:error] %>");
+<%end%>
+
 function onlyOneCheckBox(limit) {
     var limit = limit;
     var checkboxgroup = document.getElementById('checkboxgroup').getElementsByTagName("input");

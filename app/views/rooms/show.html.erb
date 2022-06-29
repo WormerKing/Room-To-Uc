@@ -1,22 +1,27 @@
 <div class="container bg-warning mt-4 h-100" style="text-align: center;">
 	<h5 class="pt-2">Oda kurucusu : <%= @room.creator.username%></h5><hr/>
+	<h6 class="pt-2">Odadaki oyuncu sayısı : <%= @room.users.length%></h6><hr/>
 	<strong>Kurallar</strong><br/><p><%= @room.rules%></p><hr/>
 	<strong>Tip</strong><p><%= @room.tip%></p><hr/>
 	<strong>Aktif</strong><p><%= @room.online ? "Evet" : "Hayır"%></p><hr/>
 	<% if creator_account(@room)%>
 		<h1>Bu oda senin</h1>
 	<%end%>
-	<% if @room.online && current_user.role == "player"%>
-		<% if control_room(@room) && sil(@room) && !(creator_account(@room)) %>
-			<%= link_to("Odaya katıl",button_click_path,class:"btn btn-secondary mt-5 mb-2")%>
-		<%elsif @room.users.include?(current_user)%>
-			<h5 class="pb-4">Bu odaya katıldın</h5>
+	<% if current_user%>
+		<% if @room.online && current_user.role == "player"%>
+			<% if control_room(@room) && sil(@room) && !(creator_account(@room)) %>
+				<%= link_to("Odaya katıl",button_click_path,class:"btn btn-secondary mt-5 mb-2")%>
+			<%elsif @room.users.include?(current_user)%>
+				<h5 class="pb-4">Bu odaya katıldın</h5>
+			<%end%>
+		<%elsif @room.online == false%>
+			<h5>Bu oda sona ermiş</h5>
+		<%elsif current_user.role == "janitor" && @room.creator.username != current_user.username%>
+			<h5>Oda oluşturucular başka odalara katılamazlar</h5>
+		<%elsif @room.creator.username == current_user.username%>
+			<%= link_to("Odayı bitir",edit_room_path(@room),class:"btn btn-danger")%>
 		<%end%>
-	<%elsif @room.online == false%>
-		<h5>Bu oda sona ermiş</h5>
-	<%elsif current_user.role == "janitor" && @room.creator.username != current_user.username%>
-		<h5>Oda oluşturucular başka odalara katılamazlar</h5>
-	<%elsif @room.creator.username == current_user.username%>
-		<%= link_to("Odayı bitir",edit_room_path(@room),class:"btn btn-danger")%>
+	<%else%>
+		<p class="pb-3">Lütfen odaya katılmak için <%= link_to "giriş",login_path,class:"link-primary",style:"text-decoration:none;"%> yapın</p >
 	<%end%>
 </div>

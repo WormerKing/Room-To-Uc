@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
 	def create
 		@room = Room.new(params.require(:room).permit!)
 
-		@room.creator = current_user
+		@room.creator = current_user if current_user.role == "janitor"
 		@room.online = true
 
 		if @room.save
@@ -39,7 +39,7 @@ class RoomsController < ApplicationController
 	end
 
 	def update
-		if params[:winners].size == @max_users
+		if params.include?(:winners) && params[:winners].size <= @max_users
 			params[:winners].each do |i| 
 				if @room.users.include?(User.find_by_username(i)) && current_user.role == "janitor"
 					@room.winners << User.find_by_username(i) 
@@ -48,12 +48,13 @@ class RoomsController < ApplicationController
 
 			#@room.update(params.require(:room).permit(:video))
 		
-			#@room.update_column(:online,false)
+			@room.update_column(:online,false)
 		
 			redirect_to("/")
 			# TODO buraya api hizmetine gönderilecek sunucu eklenecek
 			# TODO HTTParty.post ile gönder
 		else
+			flash[:error] = "Lütfen kazanan oyuncuları seçiniz"
 			redirect_to(edit_room_path(@room.id))
 		end
 	end
