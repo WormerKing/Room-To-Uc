@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def sil(room)
-		true unless room.users.include?(current_user)
+		room.users.include?(current_user) ? false : true 
 	end
 
 	def creator_account(room)
-		true if room.creator == current_user
+		room.creator == current_user ? true : false
 	end
 
 	def current_user

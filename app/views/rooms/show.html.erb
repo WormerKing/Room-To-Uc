@@ -7,7 +7,7 @@
 	<% if creator_account(@room)%>
 		<h1>Bu oda senin</h1>
 	<%end%>
-	<% if current_user%>
+	<% if signed_in?%>
 		<% if @room.online && current_user.role == "player"%>
 			<% if control_room(@room) && sil(@room) && !(creator_account(@room)) %>
 				<%= link_to("Odaya katıl",button_click_path,class:"btn btn-secondary mt-5 mb-2")%>
