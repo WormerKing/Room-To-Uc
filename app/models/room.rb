@@ -1,5 +1,7 @@
 class Room < ApplicationRecord
     belongs_to :creator,class_name:"User",foreign_key:"creator_id"
+
+    has_one :log,class_name:"Log",foreign_key:"room_id",dependent: :destroy
     
     has_and_belongs_to_many :users,join_table:"rooms_users"
 

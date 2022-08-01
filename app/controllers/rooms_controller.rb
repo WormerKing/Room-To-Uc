@@ -46,13 +46,13 @@ class RoomsController < ApplicationController
 				end
 			end		
 
-			#@room.update(params.require(:room).permit(:video))
+			@room.update(params.require(:room).permit(:video))
 		
 			@room.update_column(:online,false)
+
+			Log.create(processed:true,room:@room)
 		
 			redirect_to("/")
-			# TODO buraya api hizmetine gönderilecek sunucu eklenecek
-			# TODO HTTParty.post ile gönder
 		else
 			flash[:error] = "Lütfen kazanan oyuncuları seçiniz"
 			redirect_to(edit_room_path(@room.id))

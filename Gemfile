@@ -19,15 +19,22 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'base64', '~> 0.1.1'
 
-gem 'httparty', '~> 0.20.0'
-
+# Css library
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 
 gem 'jquery-rails', '~> 4.4'
 
+# Email validation gem
 gem 'email_validator', '~> 2.2', '>= 2.2.3'
 
+# For send email with sendgrid
 gem 'sendgrid-ruby'
+
+# Json web token gem
+gem 'jwt', '~> 2.4', '>= 2.4.1'
+
+# Json web token helper gem
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
 # gem 'formvalidation-rails', '~> 0.8.1'
 

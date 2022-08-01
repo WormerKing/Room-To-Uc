@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :api,except: %i[ destroy create new edit ]
+  get "/api/:id/video",to:"api#video"
+  post "/api/login",to:"api#login"
+  get "/api/:id/winners",to:"api#winners"
+
   get "/kullanıcı_sözleşmesi",to:"users#user_agreement",as: :user_agreement
 
   get "/verify_email",to:"users#verify_email",as: :verify_email
@@ -12,6 +18,7 @@ Rails.application.routes.draw do
 
   resource :session,only: :create
 
+  
   #get "/room/:id",to: "rooms#show",as: :other_room
 
   resources :rooms,except:%i[ index destroy ],path_names:{edit:"düzenle"}
