@@ -38,6 +38,11 @@ class ApiController < ApplicationController
   	def login
     	@user = ApiUser.find_by(username: params[:username])
 
+    	puts "--------------------------------------"
+
+    	puts params[:username]
+    	puts params[:password]
+
     	if @user && @user.authenticate(params[:password])
       		token = encode_token({user_id: @user.id})
       		render json: {user: @user, token: token}

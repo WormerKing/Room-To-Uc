@@ -71,5 +71,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 group :production do 
-  gem 'pg', '~> 1.3', '>= 1.3.2'
+  #gem 'pg', '~> 1.3', '>= 1.3.2'
 end

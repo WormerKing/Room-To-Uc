@@ -14,6 +14,9 @@ class RoomsController < ApplicationController
 	end
 	def new
 		redirect_to("/") unless current_user.role == "janitor"
+		if current_user.creator_rooms.map(&:online).include?(true)
+			redirect_to("/")
+		end
 		@room = Room.new
 	end
 	def create
