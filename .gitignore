@@ -18,7 +18,8 @@
 !/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/tmp/pids/*
+/tmp/db/*
+#/veritabani
 !/tmp/pids/
 !/tmp/pids/.keep
 

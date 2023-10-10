@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+    web:
+        build: .
+        command: /bin/sh /app/script.sh
+        volumes:
+            - .:/app
+        depends_on:
+            - db
+        ports:
+            - "3000:3000/tcp"
+        environment:
+            - DATABASE_HOST=172.40.5.0
+        networks:
+            - deneme
+    db:
+        image: postgres
+        volumes:
+            - ./tmp/db:/var/postgresql/data
+        environment:
+            - POSTGRES_USER=wormer
+            - POSTGRES_PASSWORD=wormer-
+            - POSTGRES_DB=deneme
+        networks:
+            - deneme
+networks:
+    deneme:
+        ipam:
+            driver: default
+            config:
+              - subnet: 172.40.0.0/16
+                ip_range: 172.40.5.0/24
+                gateway: 172.40.5.254
+                #aux_addresses:
+                #    host1: 172.40.1.5
+                #    host2: 172.40.1.6
+                #    host3: 172.40.1.7

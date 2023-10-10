@@ -19,6 +19,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'base64', '~> 0.1.1'
 
+gem 'pg', '~> 1.3', '>= 1.3.2'
+
 # Css library
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 
