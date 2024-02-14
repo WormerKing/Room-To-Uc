@@ -44,9 +44,9 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     user_name: 'apikey', 
-    password: "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",
+    password: "",
     domain: 'localhost',
-    address: 'smtp.sendgrid.net',
+    address: '',
     port: "587",
     authentication: :plain,
     enable_starttls_auto: true
