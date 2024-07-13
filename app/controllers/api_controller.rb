@@ -3,28 +3,41 @@ class ApiController < ApplicationController
 	before_action :authorized,except:%i[ login ]
 
 	def index
-		render json:{datas:Log.where(processed:true)}
+		render json:{logs: Log.where(processed:true)}
 	end
 
 	def show
-		@log = Log.find(params[:id])
-		render json:{data:@log}
+		if Log.exists?(id:params[:id]) 
+			@log = Log.find(params[:id])
+			render json:{data:@log}
+		else
+			render json:{error: "Record Not found!"}
+		end
 	end
 
 	def winners
-		@room = Log.find(params[:id]).room
-		render json:{winners:@room.winners}
+		
+		if Log.exists?(params[:id])
+			@room = Log.find(params[:id]).room
+			render json:{winners:@room.winners}
+		else
+			render json:{error: "Record Not found!"}
+		end
 	end
 
 	def update
 		#encoded = Base64.encode64("False")
-		@log = Log.find(params[:id])
+		if Log.exists?(params[:id])
+			@log = Log.find(params[:id])
 
-		unless @log.processed
-			render json: {error:"Bu odanın ödemesi zaten yapılmış"}
+			unless @log.processed
+				render json: {error:"Bu odanın ödemesi zaten yapılmış"}
+			else
+				@log.update(processed:false)
+				render json:{message:"Başarılı"}
+			end
 		else
-			@log.update(processed:false)
-			render json:{message:"Başarılı"}
+			render json: {error: "Record Not Found!"}
 		end
 	end
 
@@ -36,19 +49,18 @@ class ApiController < ApplicationController
 	end
 
   	def login
-    	@user = ApiUser.find_by(username: params[:username])
+  		if ApiUser.exists?(username:params[:username])
+	    	@user = ApiUser.find_by(username: params[:username])
 
-    	puts "--------------------------------------"
-
-    	puts params[:username]
-    	puts params[:password]
-
-    	if @user && @user.authenticate(params[:password])
-      		token = encode_token({user_id: @user.id})
-      		render json: {user: @user, token: token}
-    	else
-      		render json: {error: "Invalid username or password"}
-    	end
+	    	if @user && @user.authenticate(params[:password])
+	      		token = encode_token({user_id: @user.id})
+	      		render json: {user: @user, token: token}
+	    	else
+	      		render json: {error: "Invalid password"}
+	    	end
+	    else
+	    	render json: {error: "User doesnt exists!"}
+	    end
   	end
 
 	# The private area ######################### 
